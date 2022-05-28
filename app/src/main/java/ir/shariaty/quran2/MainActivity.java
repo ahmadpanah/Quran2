@@ -5,13 +5,17 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import ir.shariaty.quran2.activities.SurahDetailActivity;
 import ir.shariaty.quran2.adapter.SurahAdapter;
+import ir.shariaty.quran2.common.Common;
+import ir.shariaty.quran2.listener.SurahListner;
 import ir.shariaty.quran2.model.Surah;
 import ir.shariaty.quran2.viewmodel.SurahViewModel;
 
@@ -53,11 +57,17 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     if (list.size() != 0) {
-                        surahAdapter = new SurahAdapter(this , list);
+                        surahAdapter = new SurahAdapter(this , list , this::onSurahListener);
                         recyclerview.setAdapter(surahAdapter);
                         surahAdapter.notifyDataSetChanged();
                     }
                 });
+
+    }
+
+    private void onSurahListener(int position) {
+        Intent intent = new Intent(MainActivity.this, SurahDetailActivity.class);
+        intent.putExtra(Common.SURAH_NO, list.get(position).getNumber());
 
     }
 }
