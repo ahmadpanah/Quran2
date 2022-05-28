@@ -4,6 +4,15 @@ import com.google.gson.annotations.SerializedName;
 
 public class Surah {
 
+    public Surah(int number, String name, String englishName, String englishNameTranslation, int numberOfAyahs, String revelationType) {
+        this.number = number;
+        this.name = name;
+        this.englishName = englishName;
+        this.englishNameTranslation = englishNameTranslation;
+        this.numberOfAyahs = numberOfAyahs;
+        this.revelationType = revelationType;
+    }
+
     @SerializedName("number")
     private int number;
 
@@ -21,6 +30,9 @@ public class Surah {
 
     @SerializedName("revelationType")
     private String revelationType;
+
+    public Surah(int number, String name, String englishName, String englishNameTranslation, int numberOfAyahs) {
+    }
 
 
     public int getNumber() {
